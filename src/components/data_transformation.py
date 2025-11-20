@@ -66,7 +66,7 @@ class DataTransformation:
             logging.info("Reading of train and test data is completed")
 
             logging.info("Obtaining preproessing object")
-            preprocessing_obj = self.get_data_transformer_object
+            preprocessing_obj = self.get_data_transformer_object()
 
             target_column_name = "math_score"
             numerical_columns = ["writing_score", "reading_score"]
