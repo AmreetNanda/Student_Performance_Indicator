@@ -5,77 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Exam Performance Indicator</title>
 
-    <!-- Simple Beautiful Styling -->
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Poppins, sans-serif;
             background: #f3f5f7;
+            margin: 0;
+            padding: 30px 0;
             display: flex;
             justify-content: center;
-            padding: 40px;
         }
 
         .container {
             background: white;
-            padding: 30px 40px;
-            border-radius: 12px;
-            max-width: 520px;
-            width: 100%;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 35px 45px;
+            border-radius: 16px;
+            max-width: 900px;
+            width: 95%;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         h1 {
             text-align: center;
             margin-bottom: 25px;
             color: #2c3e50;
+            font-size: 30px;
         }
 
-        .form-group {
-            margin-bottom: 18px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
         }
 
         label {
-            font-weight: bold;
-            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 15px;
             display: block;
+            margin-bottom: 5px;
         }
 
         select, input {
             width: 100%;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 11px;
+            border-radius: 8px;
             border: 1px solid #ccc;
-            font-size: 15px;
-        }
-
-        select:focus, input:focus {
-            border-color: #3498db;
-            outline: none;
+            background: #f7f7f7;
         }
 
         .btn {
+            margin-top: 20px;
             width: 100%;
-            padding: 12px;
-            background: #3498db;
-            color: white;
+            padding: 14px;
+            font-size: 18px;
+            background: #6c63ff;
             border: none;
-            border-radius: 6px;
-            font-size: 17px;
+            color: white;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background 0.25s;
+            font-weight: 600;
         }
 
         .btn:hover {
-            background: #217dbb;
+            background: #554bd1;
         }
 
         .result-box {
             margin-top: 30px;
-            padding: 15px;
-            background: #ecf0f1;
-            border-left: 5px solid #3498db;
-            border-radius: 6px;
-            font-size: 18px;
+            font-size: 22px;
+            padding: 18px;
+            background: #eef2ff;
+            border-left: 5px solid #6c63ff;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* Charts */
+        .charts-container {
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .chart-card {
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -83,83 +115,199 @@
 <body>
 
 <div class="container">
-    <h1>Student Exam Performance Prediction</h1>
+    <h1>📘 Student Exam Performance Prediction</h1>
 
     <form action="{{ url_for('predict_datapoint')}}" method="post">
 
-        <div class="form-group">
-            <label>Gender</label>
-            <select name="gender" required>
-                <option value="" disabled selected>Select your Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-            </select>
-        </div>
+        <div class="grid">
 
-        <div class="form-group">
-            <label>Race or Ethnicity</label>
-            <select name="ethnicity" required>
-                <option value="" disabled selected>Select Ethnicity</option>
-                <option value="group A">Group A</option>
-                <option value="group B">Group B</option>
-                <option value="group C">Group C</option>
-                <option value="group D">Group D</option>
-                <option value="group E">Group E</option>
-            </select>
-        </div>
+            <div class="card">
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option disabled selected>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Parental Level of Education</label>
-            <select name="parental_level_of_education" required>
-                <option value="" disabled selected>Select Education</option>
-                <option value="associate's degree">Associate's Degree</option>
-                <option value="bachelor's degree">Bachelor's Degree</option>
-                <option value="high school">High School</option>
-                <option value="master's degree">Master's Degree</option>
-                <option value="some college">Some College</option>
-                <option value="some high school">Some High School</option>
-            </select>
-        </div>
+            <div class="card">
+                <label>Race/Ethnicity</label>
+                <select name="ethnicity" required>
+                    <option disabled selected>Select Ethnicity</option>
+                    <option value="group A">Group A</option>
+                    <option value="group B">Group B</option>
+                    <option value="group C">Group C</option>
+                    <option value="group D">Group D</option>
+                    <option value="group E">Group E</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Lunch Type</label>
-            <select name="lunch" required>
-                <option value="" disabled selected>Select Lunch Type</option>
-                <option value="free/reduced">Free/Reduced</option>
-                <option value="standard">Standard</option>
-            </select>
-        </div>
+            <div class="card">
+                <label>Parental Education</label>
+                <select name="parental_level_of_education" required>
+                    <option disabled selected>Select Education</option>
+                    <option value="high school">High School</option>
+                    <option value="some college">Some College</option>
+                    <option value="associate's degree">Associate Degree</option>
+                    <option value="bachelor's degree">Bachelor Degree</option>
+                    <option value="master's degree">Master Degree</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Test Preparation Course</label>
-            <select name="test_preparation_course" required>
-                <option value="" disabled selected>Select Course</option>
-                <option value="none">None</option>
-                <option value="completed">Completed</option>
-            </select>
-        </div>
+            <div class="card">
+                <label>Lunch</label>
+                <select name="lunch" required>
+                    <option disabled selected>Select Lunch Type</option>
+                    <option value="free/reduced">Free/Reduced</option>
+                    <option value="standard">Standard</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Reading Score (0–100)</label>
-            <input type="number" name="reading_score" min="0" max="100" required>
-        </div>
+            <div class="card">
+                <label>Test Preparation</label>
+                <select name="test_preparation_course" required>
+                    <option disabled selected>Select Course</option>
+                    <option value="none">None</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>Writing Score (0–100)</label>
-            <input type="number" name="writing_score" min="0" max="100" required>
+            <div class="card">
+                <label>Reading Score</label>
+                <input type="number" name="reading_score" min="0" max="100" required>
+            </div>
+
+            <div class="card">
+                <label>Writing Score</label>
+                <input type="number" name="writing_score" min="0" max="100" required>
+            </div>
+
         </div>
 
         <button type="submit" class="btn">Predict Math Score</button>
-
     </form>
 
     {% if results %}
-    <div class="result-box">
-        <strong>Prediction:</strong> {{ results }}
+    <div class="result-box" data-score="{{ results }}">
+        Predicted Math Score: <span class="score">0</span>
+    </div>
+
+    <!-- CHARTS SECTION -->
+    <div class="charts-container">
+        <h2 style="text-align:center;">📊 Detailed Performance Analysis</h2>
+
+        <div class="chart-grid">
+
+            <div class="chart-card">
+                <h3>Gauge Indicator</h3>
+                <canvas id="gaugeChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Radar Comparison</h3>
+                <canvas id="radarChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Bar Breakdown</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <h3>Score Distribution</h3>
+                <canvas id="donutChart"></canvas>
+            </div>
+
+        </div>
     </div>
     {% endif %}
-
 </div>
+
+<!-- ChartJS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS Logic -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const box = document.querySelector(".result-box");
+    if (box) {
+
+        let mathScore = parseInt(box.dataset.score);
+        let reading = parseInt("{{ request.form.get('reading_score', 0) }}");
+        let writing = parseInt("{{ request.form.get('writing_score', 0) }}");
+
+        /* ---- Count Animation ---- */
+        const scoreEl = box.querySelector(".score");
+        let count = 0;
+        let timer = setInterval(() => {
+            count++;
+            scoreEl.textContent = count;
+            if (count >= mathScore) clearInterval(timer);
+        }, 20);
+
+        /* ---- Gauge Chart ---- */
+        new Chart(document.getElementById("gaugeChart"), {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [mathScore, 100 - mathScore],
+                    backgroundColor: ["#6c63ff", "#dcdcdc"],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                circumference: 180,
+                rotation: 270,
+                cutout: "70%",
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        /* ---- Radar ---- */
+        new Chart(document.getElementById("radarChart"), {
+            type: "radar",
+            data: {
+                labels: ["Reading", "Writing", "Math"],
+                datasets: [{
+                    label: "Scores",
+                    data: [reading, writing, mathScore],
+                    backgroundColor: "rgba(108,99,255,0.3)",
+                    borderColor: "#6c63ff",
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        /* ---- Bar ---- */
+        new Chart(document.getElementById("barChart"), {
+            type: "bar",
+            data: {
+                labels: ["Reading", "Writing", "Math"],
+                datasets: [{
+                    label: "Scores",
+                    data: [reading, writing, mathScore],
+                    backgroundColor: ["#ffd6a5", "#bde0fe", "#caffbf"]
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true, max: 100 } }
+            }
+        });
+
+        /* ---- Donut ---- */
+        new Chart(document.getElementById("donutChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Reading", "Writing", "Math"],
+                datasets: [{
+                    data: [reading, writing, mathScore],
+                    backgroundColor: ["#f1c0e8", "#b5e8ff", "#caffbf"]
+                }]
+            }
+        });
+    }
+});
+</script>
 
 </body>
 </html>
