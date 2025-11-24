@@ -115,13 +115,13 @@ Open: 👉 http://localhost:8501
 ## Screenshots
 
 ##### Home page
-![App Screenshot]()
+![App Screenshot](https://github.com/AmreetNanda/Student_Performance_Indicator/blob/main/Student_Performance_Indicator_1.png)
 
 ##### Predict page
-![App Screenshot]()
+![App Screenshot](https://github.com/AmreetNanda/Student_Performance_Indicator/blob/main/Student_Performance_Indicator_2.png)
 
 ## Demo
-
+https://github.com/user-attachments/assets/a15b3a94-9727-40f2-8556-c8a666fad884
 
 ## License
 
