@@ -92,13 +92,14 @@ pip install -r requirements.txt
 ```bash
 run app.py
 ```
+```
 Open in your browser:
 👉 http://127.0.0.1:5000/
 👉 Click on button
 👉 Enter student details
 👉 click "Predict Math Score" button
 👉 Receive the predicted math score of the student with view interactive dashboard
-
+```
 ## 🐳 Running with Docker (optional)
 ### Build the image
 ```bash
